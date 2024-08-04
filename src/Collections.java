@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.List;
 
 import list.operacao.CarrinhoDeCompras;
@@ -6,6 +7,13 @@ import list.ordenacao.OrdenacaoNumeros;
 import list.ordenacao.OrdenacaoPessoas;
 import list.pesquisa.CatalogoLivros;
 import list.pesquisa.SomaNumeros;
+import map.operacao.AgendaCompromissos;
+import map.operacao.Dicionario;
+import map.ordenacao.AgendaEventos;
+import map.ordenacao.LivrariaOnline;
+import map.ordenacao.Livro;
+import map.pesquisa.ContagemPalavras;
+import map.pesquisa.EstoqueProdutos;
 import set.operacao.ConjuntoConvidados;
 import set.operacao.ConjuntoPalavrasUnicas;
 import set.ordenacao.CadastroProdutos;
@@ -211,5 +219,96 @@ public class Collections {
 
                 gerenciadorAlunos.exibirAlunosPorNome();
                 gerenciadorAlunos.exibirAlunosPorNota();
+
+                AgendaCompromissos agendaCompromissos = new AgendaCompromissos();
+
+                agendaCompromissos.adicionarCompromisso("Compromisso 1", 4);
+                agendaCompromissos.adicionarCompromisso("Compromisso 1", 1);
+                agendaCompromissos.adicionarCompromisso("Compromisso 3", 3);
+                agendaCompromissos.adicionarCompromisso("Compromisso 4", 6);
+                agendaCompromissos.adicionarCompromisso("Compromisso 5", 3);
+                agendaCompromissos.adicionarCompromisso("Compromisso 1", 5);
+
+                agendaCompromissos.exibirCompromissos();
+
+                agendaCompromissos.removerCompromisso("Compromisso 5");
+                agendaCompromissos.exibirCompromissos();
+
+                System.out.println("O número é " + agendaCompromissos.pesquisarPorNome("Compromisso 4"));
+
+                Dicionario dicionario = new Dicionario();
+
+                dicionario.adicionarPalavra("Palavra 1", "Definição 1");
+                dicionario.adicionarPalavra("Palavra 2", "Definição 2");
+                dicionario.adicionarPalavra("Palavra 3", "Definição 3");
+                dicionario.adicionarPalavra("Palavra 4", "Definição 4");
+
+                dicionario.removerPalavra("Palavra 4");
+                dicionario.exibirPalavras();
+
+                String definicaoDaPalavra = dicionario.pesquisarPorPalavra("Palavra 3");
+                System.out.println(definicaoDaPalavra);
+
+                EstoqueProdutos estoqueProdutos = new EstoqueProdutos();
+
+                estoqueProdutos.exibirProdutos();
+
+                estoqueProdutos.adicionarProduto(1L, "Produto 1", 2, 2.0);
+                estoqueProdutos.adicionarProduto(2L, "Produto 2", 4, 4.0);
+                estoqueProdutos.adicionarProduto(3L, "Produto 3", 6, 6.0);
+
+                estoqueProdutos.exibirProdutos();
+
+                System.out.println("O valor total do estoque é de R$" + estoqueProdutos.calcularValorTotalEstoque());
+                System.out.println("O produto mais caro é o " + estoqueProdutos.obterProdutoMaisCaro());
+                System.out.println("O produto mais barato é o " + estoqueProdutos.obterProdutoMaisBarato());
+                System.out.println("O produto que está em maior quantidade no estoque é o "
+                                + estoqueProdutos.obterProdutoComMaiorQuantidadeEValorTotalNoEstoque());
+
+                ContagemPalavras contagemPalavras = new ContagemPalavras();
+
+                contagemPalavras.adicionarPalavra("Java", 8);
+                contagemPalavras.adicionarPalavra("C#", 6);
+                contagemPalavras.adicionarPalavra("Ruby", 2);
+                contagemPalavras.adicionarPalavra("PHP", 4);
+
+                System.out.println("Existem " + contagemPalavras.exibirContagemPalavras() + " palavras");
+
+                String palavraMaisFrequente = contagemPalavras.encontrarPalavraMaisFrequente();
+                System.out.println("A linguagem mais frequente é o " + palavraMaisFrequente);
+
+                AgendaEventos agendaEventos = new AgendaEventos();
+
+                agendaEventos.adicionarEvento(LocalDate.of(2022, 6, 8), "Evento 1", "Atração 1");
+                agendaEventos.adicionarEvento(LocalDate.of(2024, 8, 2), "Evento 2", "Atração 2");
+                agendaEventos.adicionarEvento(LocalDate.of(2020, 2, 4), "Evento 3", "Atração 3");
+                agendaEventos.adicionarEvento(LocalDate.of(2024, 8, 3), "Evento 4", "Atração 4");
+                agendaEventos.adicionarEvento(LocalDate.of(2024, 8, 4), "Evento 5", "Atração 5");
+                agendaEventos.adicionarEvento(LocalDate.of(2024, 8, 8), "Evento 6", "Atração 6");
+
+                agendaEventos.exibirAgenda();
+
+                agendaEventos.obterProximoEvento();
+
+                LivrariaOnline livrariaOnline = new LivrariaOnline();
+
+                livrariaOnline.adicionarLivro("Link 1", new Livro("Titulo 1", "Autor 1", 100));
+                livrariaOnline.adicionarLivro("Link 2", new Livro("Titulo 2", "Autor 2", 10));
+                livrariaOnline.adicionarLivro("Link 3", new Livro("Titulo 3", "Autor 2", 60));
+                livrariaOnline.adicionarLivro("Link 4", new Livro("Titulo 4", "Autor 4", 40));
+                livrariaOnline.adicionarLivro("Link 5", new Livro("Titulo 5", "Autor 5", 80));
+                livrariaOnline.adicionarLivro("Link 6", new Livro("Titulo 6", "Autor 6", 20));
+
+                System.out.println("Livros ordenados por preço " + livrariaOnline.exibirLivrosOrdenadosPorPreco());
+                System.out.println("Livros ordenados por autor " + livrariaOnline.exibirLivrosOrdenadosPorAutor());
+
+                livrariaOnline.removerLivro("Titulo 6");
+
+                String pesquisaPorAutor = "Autor 2";
+                System.out.println(
+                                "Os livros do Autor 2 são " + livrariaOnline.pesquisarLivrosPorAutor(pesquisaPorAutor));
+
+                System.out.println("O livro mais caro é o " + livrariaOnline.exibirLivroMaisCaro());
+                System.out.println("O livro mais barato é o " + livrariaOnline.exibirLivroMaisBarato());
         }
 }
